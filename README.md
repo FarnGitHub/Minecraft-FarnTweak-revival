@@ -16,4 +16,4 @@ anything that don't do the samething as this mod will be compatible
 - Add more information on debug screen
 - Configuration Screen
 - debug screen toggle
-- inventory shift clicking shortcut
+- ~~inventory shift clicking shortcut~~ ( Quickly Scrapped . use this [mod](https://github.com/FarnGitHub/Other-Minecraft-Mod/releases/download/ConvenientInventoryReBackported/ConvenientInventoryb1.1_02.zip) instead )
