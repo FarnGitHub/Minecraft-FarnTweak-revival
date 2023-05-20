@@ -10,13 +10,9 @@ import net.minecraft.src.*;
 import farn.GuiIngameMenuProxy;
 
 public class FarnMain {
-	public String skinUrl = "http://resourceproxy.pymcl.net/skinapi.php?user=";
-	public String capeUrl = "http://resourceproxy.pymcl.net/capeapi.php?user=";	
-	public boolean appendSkinPNG = true;
-	public boolean appendCapeUsername = true;	
-	public boolean appendCapePNG = true;
 	public boolean isTakingScreenshot = false;
 	public static final FarnMain instance = new FarnMain();
+	public static final FarnGameSettings option = new FarnGameSettings();
 	
 	public final String Version() {
 		return "v1.0";
@@ -24,31 +20,36 @@ public class FarnMain {
 
 	public void OSDHook(Minecraft minecraft, boolean ingui) {
 		if(!ingui) {
-			updateSkinAndCape(minecraft, minecraft.thePlayer);
-			if (minecraft.theWorld instanceof WorldClient) {
-				try {
-					for (Entity entity : (Set<Entity>) field_20914_EField.get((WorldClient) minecraft.theWorld)) {
-						if (entity instanceof EntityOtherPlayerMP) {
-							updateSkinAndCape(minecraft, (EntityPlayer) entity);
-						} 
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				} 
+			if(option.skinFix) {
+				updateSkinAndCape(minecraft, minecraft.thePlayer);
+				if (minecraft.theWorld instanceof WorldClient) {
+					try {
+						for (Entity entity : (Set<Entity>) field_20914_EField.get((WorldClient) minecraft.theWorld)) {
+							if (entity instanceof EntityOtherPlayerMP) {
+								updateSkinAndCape(minecraft, (EntityPlayer) entity);
+							} 
+						}
+					} catch (Exception e) {
+						System.out.println("error");
+						e.printStackTrace();
+					} 
+				}
 			}
-			this.screenshotListener();
+			if(option.F2screenshot) {
+				this.screenshotListener();
+			}
 		} else {
-			if(minecraft.currentScreen instanceof GuiIngameMenu && !(minecraft.currentScreen instanceof GuiIngameMenuProxy)) {
+			if(minecraft.currentScreen instanceof GuiIngameMenu && !(minecraft.currentScreen instanceof GuiIngameMenuProxy) && option.TexturePackButton) {
 				minecraft.displayGuiScreen(new GuiIngameMenuProxy());
 			}
 		}
 	}
 	
 	private final void updateSkinAndCape(Minecraft mc, EntityPlayer entityplayer) {
-		if (entityplayer.field_20047_bv != this.skinUrl + entityplayer.field_20047_bv + (this.appendSkinPNG ? ".png" : "") || entityplayer.field_20067_q != this.capeUrl + (this.appendCapeUsername ? mc.session.playerName + (this.appendCapePNG ? ".png" : "") : "") || entityplayer.skinUrl != entityplayer.field_20067_q) {
-			entityplayer.field_20047_bv = skinUrl + mc.session.playerName + (this.appendSkinPNG ? ".png" : "");
+		if (entityplayer.field_20047_bv != option.skinUrl + entityplayer.field_20047_bv + (option.appendSkinPNG ? ".png" : "") || entityplayer.field_20067_q != option.capeUrl + (option.appendCapeUsername ? mc.session.playerName + (option.appendCapePNG ? ".png" : "") : "") || entityplayer.skinUrl != entityplayer.field_20067_q) {
+			entityplayer.field_20047_bv = option.skinUrl + mc.session.playerName + (option.appendSkinPNG ? ".png" : "");
 			mc.renderGlobal.obtainEntitySkin(entityplayer);
-			entityplayer.field_20067_q = capeUrl + (appendCapeUsername ? mc.session.playerName + (this.appendCapePNG ? ".png" : "") : "");
+			entityplayer.field_20067_q = option.capeUrl + (option.appendCapeUsername ? mc.session.playerName + (option.appendCapePNG ? ".png" : "") : "");
 			entityplayer.skinUrl = entityplayer.field_20067_q;
 			mc.renderEngine.obtainImageData(entityplayer.skinUrl, new ImageBufferDownload());
 		}

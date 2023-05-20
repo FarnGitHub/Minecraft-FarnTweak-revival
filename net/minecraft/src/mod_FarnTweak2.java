@@ -11,4 +11,8 @@ public class mod_FarnTweak2 extends BaseMod {
 	public void OSDHook(Minecraft minecraft, boolean ingui) {
 		farn.FarnMain.instance.OSDHook(minecraft, ingui);
 	}
+
+	public void ModsLoaded() {
+		farn.FarnMain.option.loadOptions();
+	}
 }
