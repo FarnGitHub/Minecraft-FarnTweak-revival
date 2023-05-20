@@ -9,6 +9,7 @@ This mod require [Risugami's ModLoader](https://mcarchive.net/mods/modloader?gvs
 - Port SkinFixUni to beta 1.1_02
 - Ingame texturepack button
 - F2 Screenshot
+
 anything that don't do the samething as this mod will be compatible
 ### planned feature
 - Right click to wear armor
