@@ -1,7 +1,7 @@
 ## Description
 A Revival for my old beta 1.1_02 client
 
-unlike the original mod , this mod aim to not edit/override any classes
+current this mod doesn't edit/override any classes but in the future build this mod will edit some classes due to some feature like debug screen toggle and inventory shift clicking shortcut
 
 This mod require [Risugami's ModLoader](https://mcarchive.net/mods/modloader?gvsn=b1.1_02) to work
 ## Feature
@@ -15,3 +15,5 @@ anything that don't do the samething as this mod will be compatible
 - Right click to wear armor
 - Add more information on debug screen
 - Configuration Screen
+- debug screen toggle
+- inventory shift clicking shortcut
