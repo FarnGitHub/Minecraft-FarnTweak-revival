@@ -46,10 +46,10 @@ public class FarnMain {
 	}
 	
 	private final void updateSkinAndCape(Minecraft mc, EntityPlayer entityplayer) {
-		if (entityplayer.field_20047_bv != option.skinUrl + entityplayer.field_20047_bv + (option.appendSkinPNG ? ".png" : "") || entityplayer.field_20067_q != option.capeUrl + (option.appendCapeUsername ? mc.session.playerName + (option.appendCapePNG ? ".png" : "") : "") || entityplayer.skinUrl != entityplayer.field_20067_q) {
-			entityplayer.field_20047_bv = option.skinUrl + mc.session.playerName + (option.appendSkinPNG ? ".png" : "");
+		if (entityplayer.field_20047_bv != option.skinUrl + entityplayer.field_20047_bv + (option.appendSkinPNG ? ".png" : "") || entityplayer.field_20067_q != option.capeUrl + (option.appendCapeUsername ? entityplayer.field_771_i + (option.appendCapePNG ? ".png" : "") : "") || entityplayer.skinUrl != entityplayer.field_20067_q) {
+			entityplayer.field_20047_bv = option.skinUrl + entityplayer.field_771_i + (option.appendSkinPNG ? ".png" : "");
 			mc.renderGlobal.obtainEntitySkin(entityplayer);
-			entityplayer.field_20067_q = option.capeUrl + (option.appendCapeUsername ? mc.session.playerName + (option.appendCapePNG ? ".png" : "") : "");
+			entityplayer.field_20067_q = option.capeUrl + (option.appendCapeUsername ? entityplayer.field_771_i + (option.appendCapePNG ? ".png" : "") : "");
 			entityplayer.skinUrl = entityplayer.field_20067_q;
 			mc.renderEngine.obtainImageData(entityplayer.skinUrl, new ImageBufferDownload());
 		}

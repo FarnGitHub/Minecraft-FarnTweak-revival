@@ -16,6 +16,7 @@ public class FarnGameSettings {
 	public boolean skinFix = true;
 	public boolean TexturePackButton = true;
 	public boolean F2screenshot = true;
+	public boolean betacraftSoundFix = true;
 
 	public String skinUrl = "http://resourceproxy.pymcl.net/skinapi.php?user=";
 	public String capeUrl = "http://resourceproxy.pymcl.net/capeapi.php?user=";	
@@ -37,6 +38,7 @@ public class FarnGameSettings {
 					printWriter1.println("skinFix=" + this.skinFix);
 					printWriter1.println("TexturePackButton=" + this.appendCapeUsername);
 					printWriter1.println("F2_Screenshot=" + this.appendCapePNG);
+					printWriter1.println("betacraftSoundFix=" + this.betacraftSoundFix);
 					printWriter1.println(" ");
 					printWriter1.println("#SkinFix Option");
 					printWriter1.println("skinUrl=" + this.skinUrl);
@@ -55,15 +57,16 @@ public class FarnGameSettings {
 
 			while((string2 = bufferedReader1.readLine()) != null) {
 				String[] string3 = string2.split("=");
-				this.appendSkinPNG = !string3[0].startsWith("#") ? (string3[0] == "skinFix" ? string3[1] == "true" : this.skinFix) : this.skinFix;
-				this.appendCapeUsername = !string3[0].startsWith("#") ? (string3[0] == "TexturePackButton" ? string3[1] == "true" : this.TexturePackButton) : this.TexturePackButton;
-				this.appendCapePNG = !string3[0].startsWith("#") ? (string3[0] == "F2_Screenshot" ? string3[1] == "true" : this.F2screenshot) : this.F2screenshot;
+				this.appendSkinPNG = string3[0] == "skinFix" ? string3[1] == "true" : this.skinFix;
+				this.appendCapeUsername = string3[0] == "TexturePackButton" ? string3[1] == "true" : this.TexturePackButton;
+				this.appendCapePNG = string3[0] == "F2_Screenshot" ? string3[1] == "true" : this.F2screenshot;
+				this.appendCapePNG = string3[0] == "betacraftSoundFix" ? string3[1] == "true" : this.betacraftSoundFix;
 
-				this.skinUrl = !string3[0].startsWith("#") ? (string3[0] == "skinUrl" ? string3[1] : this.skinUrl) : this.skinUrl; 
-				this.capeUrl = !string3[0].startsWith("#") ? (string3[0] == "capeUrl" ? string3[1] : this.capeUrl) : this.capeUrl;
-				this.appendSkinPNG = !string3[0].startsWith("#") ? (string3[0] == "appendSkinPNG" ? string3[1] == "true" : this.appendSkinPNG) : this.appendSkinPNG;
-				this.appendCapeUsername = !string3[0].startsWith("#") ? (string3[0] == "appendCapeUsername" ? string3[1] == "true" : this.appendCapeUsername) : this.appendCapeUsername;
-				this.appendCapePNG = !string3[0].startsWith("#") ? (string3[0] == "appendCapePNG" ? string3[1] == "true" : this.appendCapePNG) : this.appendCapePNG;
+				this.skinUrl = string3[0] == "skinUrl" ? string3[1] : this.skinUrl; 
+				this.capeUrl = string3[0] == "capeUrl" ? string3[1] : this.capeUrl;
+				this.appendSkinPNG = string3[0] == "appendSkinPNG" ? string3[1] == "true" : this.appendSkinPNG;
+				this.appendCapeUsername = string3[0] == "appendCapeUsername" ? string3[1] == "true" : this.appendCapeUsername;
+				this.appendCapePNG = string3[0] == "appendCapePNG" ? string3[1] == "true" : this.appendCapePNG;
 			}
 
 			bufferedReader1.close();
